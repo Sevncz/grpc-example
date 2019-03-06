@@ -1,0 +1,1 @@
+package com.phlink.example.server.service.push;import com.phlink.grpc.examples.proto.Status;import com.phlink.grpc.examples.proto.TopicInfo;import java.util.Set;public interface ITopicService {		public Status subscribeTopic(TopicInfo topicInfo);	public Status cancelTopic(TopicInfo topicInfo);	public Set<String> getClientId(String topic);}

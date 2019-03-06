@@ -1,0 +1,7 @@
+server:
+  port: 8081
+  application:
+    name: local-grpc-server
+grpc:
+  server:
+    port: 9090

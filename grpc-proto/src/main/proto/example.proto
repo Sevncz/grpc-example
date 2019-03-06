@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+
+option java_multiple_files = true;
+option java_package = "com.phlink.grpc.examples.proto";
+option java_outer_classname = "ExampleProto";
+option objc_class_prefix = "RLP";
+
+package example;
+
+
+service ExampleService {
+
+    rpc FileUpload (stream FileUploadRequest) returns ( CommonReply ) {}
+
+    rpc subscribe (TopicInfo) returns (stream Notify) {}
+
+}
+
+message CommonReply {
+    int32 status = 1;
+    string message = 2;
+}
+
+message FileUploadRequest {
+    int64 timestamp = 1;
+    bytes data = 2;
+    int32 offset = 3;
+    int32 size = 4;
+    string name = 5;
+    Type type = 6;
+    enum Type {
+        video = 0;
+        img = 1;
+    }
+}
+
+
+message ClientInfo {
+    string clientId = 1;
+}
+
+//订阅信息
+message TopicInfo {
+	ClientInfo clientInfo = 1;
+	string topicName = 2;
+}
+
+message Notify {
+    enum Topic {
+        CHANNEL_0 = 0;
+        CHANNEL_1 = 1;
+        CHANNEL_2 = 2;
+
+    }
+	Topic topicName = 1;
+	string status = 2;
+	bytes message = 3;
+}
+
+message Status {
+	string status = 1;
+}
+
+
+
+message Object {
+	string objectJson = 1;
+	string className = 2;
+}
